@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+	<head>
+		<title>Status page</title>
+		<meta charset="UTF-8">
+			<!-- <meta name="viewport" content="width=device-width, initial-scale=1.0 maximum-scale=1"> -->
+                        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1"/>
+				<style>
+#container {
+    display: inline-block;
+  text-align: center;
+  max-width: 450px;
+  margin:auto;
+  overflow:auto;
+}
+
+.block {
+  width: 200px;
+  height: 135px;
+  margin:2px;
+  display: inline-block;
+  background: #708090;
+}
+
+            /* The following will affect donut chart */
+.pie-yum {
+   width: 10px; height: 10px;
+   margin-left: 45px;
+   
+}
+
+svg {
+  
+  
+  position: absolute;
+  
+}
+
+
+
+        /* The following will affect bar chart right */
+html {
+  box-sizing: border-box;
+  font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+  padding: 2em;
+  background-color:#00196a;
+  margin-left: 0px;
+  margin-right: 0px;
+  
+}
+
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+
+.chart {
+  display: block;
+  width: 144px;
+  flex-wrap: wrap;
+  padding: 2em 2em 4em 2em;
+  height: 280px;
+  position: relative;
+  overflow:auto;
+  right: 30px;
+}
+
+.chart caption {
+  width: 100%;
+  margin-bottom: 2rem;
+  height: 2rem;
+}
+
+.chart h1 {
+  font-size: 1.5em;
+  text-align: center;
+}
+
+.chart thead, .chart .scale, .chart .body01 {
+  height: calc(100% - 4rem); 
+  
+}
+
+.chart thead {
+  display: flex;
+  align-items: center;
+}
+
+.chart thead tr {
+  width: 1em;
+}
+
+.chart .body01 {
+  display: flex;
+  flex-grow: 1;
+}
+
+.chart .body01 tr {
+  display: flex;
+  align-items: flex-end;
+  flex-grow: 1;
+  flex-basis: 0;
+  margin: 0 2% 0 0;
+}
+
+.chart .body01 td {
+  color: black;
+  font-size: .55em;
+  display: flex;
+  align-items: flex-end;
+  flex-grow: 1;
+  flex-basis: 0;
+  margin: 0 2% 0 0;
+  font-weight:bold;
+  text-align:center;
+}            
+
+
+.chart .body01 tr:first-child {
+  margin-left: 2%;
+}
+
+.block01 {
+  display: block;
+  width: 100%;
+  border: 1px solid white;
+}
+
+.content {
+  display:inline-block;
+  width: 75%;
+  margin: 0 auto;
+  text-align: center;
+  height: 50px;
+  color: white;
+  position: absolute;
+  left: 162px;
+  top: 125px;
+
+  h1{
+      
+    font-size: 3em;
+    font-weight: bold;
+    letter-spacing: -.015em;
+    padding: 1em 0;
+    text-align: center;
+  }
+}
+.content2 {
+  position: absolute;
+  display: inline-block;
+  width: 75%;
+  margin: 0 auto;
+  text-align: center;
+  height: 50px;
+  color: white;
+  top: 245px;
+  left: 165px;
+
+  h1{
+      display: inline-block;
+    font-size: 3em;
+    font-weight: bold;
+    letter-spacing: -.015em;
+    padding: 1em 0;
+    text-align: center;
+  }
+}
+.alignleft {
+  display: inline-block;
+  float: left;
+  font-size: 3em;
+  font-weight: bold;
+  letter-spacing: -.015em;
+  padding: 1em 0;
+  padding-left: 180px;
+  overflow:auto;
+  padding-top: 3px;
+  text-align: center;
+}
+
+.alignright {
+  display: inline-block;
+  float: right;
+  font-size: 3em;
+  font-weight: bold;
+  letter-spacing: -.015em;
+  padding: 1em 0;
+  padding-right: 10px;
+  overflow:auto;
+  padding-top: 3px;
+  text-align: center;
+  margin-right: 140px;
+} 
+
+.content3 {
+  display: float;
+  text-align: center;
+
+  h1{
+    font-size: 3em;
+    font-weight: bold;
+    letter-spacing: -.015em;
+    padding: 1em 0;
+    text-align: center;
+  }
+    }
+.sub{
+  
+  font-size: .35em;
+  font-weight: 100;
+  letter-spacing: -.015em;
+  text-align: center;
+  margin-top: 0px;
+  color: white;
+}
+.sub0{
+ 
+  margin-bottom: 2px;
+  color: white;
+}
+
+.cont1{
+  margin-top: 230px;
+}
+
+.main{
+  background-color: #00196a;
+}
+
+.pieID {
+  display: inline-block;
+  vertical-align: top;
+}
+
+.legend {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+  padding: 20px;
+  font-size: 13px;
+}
+
+.legend li {
+  width: 110px;
+  height: 1.25em;
+  margin-bottom: 0.7em;
+  padding-left: 0.5em;
+  border-left: 1.25em solid ;
+}
+
+.legend em {
+  font-style: normal;
+}
+.brdbtm {
+  border-bottom: 1px solid #FFF;
+  height: 60px;
+  overflow:auto;
+}
+.kapLogo01 {
+  height: 85px;
+  margin-left: 10px;
+  margin-top: 10px;
+  left: 50px;
+  top: 1px;
+  position: absolute;
+  margin-bottom: 20px;
+}
+
+.pcsLogo01 {
+  height: 85px;
+  margin-right: 10px;
+  margin-top: 1px;
+  left: 1075px;
+  top: 22px;
+  position: absolute;
+}
+
+.ship {
+  display: inline-block;
+  margin-left: auto;
+  margin-right: auto;
+  height: 200px;
+  position: absolute;
+  left: 570px;
+  top: 115px;
+}  
+          .flex-wrapper {
+  display: flex;
+  flex-flow: row nowrap;
+}
+
+.single-chart {
+  width: 33%;
+  justify-content: space-around ;
+}
+
+.circular-chart {
+  display: inline-block;
+  margin: 10px auto;
+  max-width: 50%;
+  max-height: 250px;
+}
+
+.circle-bg {
+  fill: none;
+  stroke: #eee;
+  stroke-width: 3.8;
+}
+
+.circle {
+  fill: none;
+  stroke-width: 2.8;
+  stroke-linecap: round;
+  animation: progress 1s ease-out forwards;
+}
+
+@keyframes progress {
+  0% {
+    stroke-dasharray: 0 100;
+  }
+}
+
+.circular-chart.orange .circle {
+  stroke: #00196a;
+}
+
+.circular-chart.green .circle {
+  stroke: #4CC790;
+}
+
+.circular-chart.blue .circle {
+  stroke: #3c9ee5;
+}
+
+.percentage {
+  fill: white;
+  font-family: sans-serif;
+  font-size: 0.6em;
+  text-anchor: middle;
+}
+
+				</style>
+			</head>
+			<body>
+				<div class="brdbtm">
+					<tr>
+						<td >
+							<img src="" class="kapLogo01" />
+						</td> 
+						<td >
+							<img src="" class="pcsLogo01" />
+						</td> 
+					</tr>
+				</div>
+					<!-- Top Right side values. change the values in <p class="sub0">000</p>   -->
+				<div class="alignright" >
+					<p class="sub0">000 </p>
+					<p class="sub">vessels</p> 
+					<p class="sub0">0000</p>
+					<p class="sub"> Export Volume</p>
+				</div>
+					<!-- Top left side values. change the values in <p class="sub0">000</p>   -->
+				<div class="alignleft">
+					<p class="sub0">000</p>
+					<p class="sub">Volume</p>
+					<p class="sub0">0000</p>
+					<p class="sub"> Import Volume</p>
+				</div>
+					<!-- Top centerd values. change the values in h1   -->
+				<div class="content">
+					<h1>123,456</h1>
+				</div>
+				<img src="" border="0" class="ship">
+					<div class="content2">
+						<h1>2019 YTD</h1>
+					</div>       
+					<div class="cont1">
+					<!-- Block chart left. change the value of height will change the height of block chart block  -->
+						<table class="chart" style="float: left; right: 278px; top: 10px;">
+							<tbody class="body01">
+								<tr>
+									<td class="block01" style="height: 55.34%; background-color: green;">55%</td>   
+								</tr>
+								<tr>
+									<td class="block01" style="height: 100%; background-color: yellow;">100%</td>      
+								</tr>
+								<tr>
+									<td class="block01" style="height: 2.00%; background-color: whitesmoke;">2%</td>
+								</tr>
+							</tbody>
+						</table>
+					<!-- Block chart Right. change the value of height will change the height of block chart block  -->						
+						<table class="chart" style="float: right; left: 258px; top: 10px;">
+							<tbody class="body01">
+								<tr> 
+									<td class="block01" style="height: 15.34%; background-color: orange;">55%</td>
+								</tr>
+								<tr>  
+									<td class="block01" style="height: 100%; background-color: red;">100%</td>      
+								</tr>
+								<tr>
+									<td class="block01" style="height: 10.00%; background-color: olive;">10%</td>
+								</tr>
+							</tbody>
+						</table>
+                                        </div>
+					<!-- box left side values. change the values in h1   -->
+						<div class="container">
+							<div class="pie-yum" style="position: absolute; margin-top: 15px;  left: 275px; color: #FFF; ">
+								<h1>0</h1>
+								<p style="width: 150px; color: #FFF;">January Import Bulk Volume</p>
+							</div>
+							<div class="pie-yum" style="position: absolute; margin-top: 150px;  left: 275px;">
+								<h1 style="text-align: center; color: #FFF;">0</h1>
+								<p style="width: 150px; color: #FFF;">January Import Break BUlk Volume</p>
+							</div>
+					<!-- box Right side values. change the values in h1   -->
+							<div class="pie-yum" style="position: absolute; margin-top: 15px;  right: 425px; color: #FFF; ">
+								<h1>0</h1>
+								<p style="width: 150px; color: #FFF;">January Export Bulk Volume</p>
+							</div>
+							<div class="pie-yum" style="position: absolute; margin-top: 150px;  right: 425px;">
+								<h1 style="text-align: center; color: #FFF;">0</h1>
+								<p style="width: 150px; color: #FFF;">January Export Break BUlk Volume</p>
+							</div> 
+					<!-- box no 1 inside value. change the values in h1   -->
+							<div class="block">
+								<div class="pie-yum" style="position: absolute; margin-top: 15px; color: #FFF;">
+									<h1>123<span>TON</span></h1>
+									<p style="width: 200px; color: #FFF;">january projection</p>
+								</div>
+							</div>
+					<!-- box no 2 ring chart. change the first value in stroke-dasharray to change the ring size and change the value inside the <text> to change the center value of the ring  -->
+							<div class="block">
+								<div class="pie-yum" >
+									<svg viewBox="0 0 96 96" class="circular-chart orange"style="position: absolute; left: 520px;">
+      <path class="circle-bg"
+        d="M18 2.0845
+          a 15.9155 15.9155 0 0 1 0 31.831
+          a 15.9155 15.9155 0 0 1 0 -31.831"
+      />
+      <path class="circle"
+        stroke-dasharray="50, 100"
+        d="M18 2.0845
+          a 15.9155 15.9155 0 0 1 0 31.831
+          a 15.9155 15.9155 0 0 1 0 -31.831"
+      />
+      <text x="18" y="20.35" class="percentage">50%</text>
+    </svg>
+									<p  style="width: 200px; position: absolute; margin-top: 115px; text-align: centre; color: #FFF; left: 690px;">compared with projection</p>
+								</div>
+							</div>
+					<!-- box no 3 inside value. change the values in h1   -->
+							<div class="block">
+								<div class="pie-yum" style="position: absolute; margin-top: 15px; color: #FFF;">
+									<h1>123<span>TON</span></h1>
+									<p style="width: 200px; color: #FFF;">january projection</p>
+								</div>
+							</div>
+					<!-- box no 4 ring chart. change the first value in stroke-dasharray to change the ring size and change the value inside the <text> to change the center value of the ring  -->
+							<div class="block">
+								<div class="pie-yum" >
+									<svg viewBox="0 -50 96 96" class="circular-chart orange"style="position: absolute; left: 520px;top: 350px;">
+      <path class="circle-bg"
+        d="M18 2.0845
+          a 15.9155 15.9155 0 0 1 0 31.831
+          a 15.9155 15.9155 0 0 1 0 -31.831"
+      />
+      <path class="circle"
+        stroke-dasharray="80, 100"
+        d="M18 2.0845
+          a 15.9155 15.9155 0 0 1 0 31.831
+          a 15.9155 15.9155 0 0 1 0 -31.831"
+      />
+      <text x="18" y="20.35" class="percentage">80%</text>
+    </svg>
+									<p  style="width: 200px; position: absolute; margin-top: 115px; text-align: centre; color: #FFF; left: 690px;">compared with projection</p>
+								</div>
+							</div>
+						<div class="pie-yum" style="position: absolute; margin-top: 10px;  left: 15px; top: 475px;">
+							<ul class="pieID legend">
+								<li style="color: green;">
+									<em>Import</em>
+								</li>
+								<li style="color: yellow;">
+									<em>Bulk</em>
+								</li>
+								<li style="color: whitesmoke;">
+									<em>Break Bulk</em>
+								</li>
+							</ul>
+						</div>
+						<div class="pie-yum" style="position: absolute; margin-top: 10px;  right: 160px; top: 475px;">
+							<ul class="pieID legend">
+								<li style="color: orange;">
+									<em>Export</em>
+								</li>
+								<li style="color: red;">
+									<em>Bulk</em>
+								</li>
+								<li style="color: olive;">
+									<em>Break Bulk</em>
+								</li>
+							</ul>
+						</div>
+					</div> 
+				</body>
+			</html>
+			
